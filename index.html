@@ -80,6 +80,25 @@ header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,rgba(7
 .nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.3);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:20px}
 .nav.prev{inset-inline-end:10px}.nav.next{inset-inline-start:10px}
 .disclaimer{opacity:.75;font-size:13.5px}
+/* experts */
+.experts{margin-top:26px;border-top:1px solid var(--line);padding-top:18px}
+.experts h3{margin:0 0 4px;font-size:18px;display:flex;align-items:center;gap:10px}
+.experts h3:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent2);box-shadow:0 0 12px var(--accent2)}
+.experts .lead{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.experts .scope{font-size:12px;color:var(--muted);margin:14px 0 6px;text-transform:none}
+.quote{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+.quote .who{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline;font-size:13.5px;color:var(--muted);margin-bottom:8px}
+.quote .who b{color:var(--text);font-size:15px}
+.quote .who .outlet{color:var(--accent2)}
+.quote blockquote{margin:0;font-size:16px;line-height:1.75;color:#eef3fa}
+.quote blockquote:before{content:"“";color:var(--accent2);font-size:26px;line-height:0;vertical-align:-8px;margin-inline-end:4px}
+.quote .orig{margin-top:8px;font-size:13px;color:#a7b4c8;direction:ltr;text-align:left;unicode-bidi:isolate;border-inline-start:2px solid var(--line);padding-inline-start:10px;display:none}
+.quote.show-en .orig{display:block}
+.quote .tools{margin-top:8px;font-size:12.5px;display:flex;gap:14px}
+.quote .tools button{background:none;border:0;color:var(--accent);cursor:pointer;font-family:inherit;font-size:12.5px;padding:0}
+.card .cbadge{position:absolute;top:8px;inset-inline-end:8px;background:rgba(246,196,83,.92);color:#3a2a00;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+.chk{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);cursor:pointer;user-select:none}
+.chk input{accent-color:var(--accent2)}
 /* docs */
 table.docs{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:40px}
 table.docs th,table.docs td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
@@ -125,7 +144,7 @@ footer p{margin:4px 0}
       <option value="title">מיון: מזהה קובץ</option>
     </select>
   </div>
-  <div class="meta-line"><span id="count"></span><span id="built"></span></div>
+  <div class="meta-line"><span id="count"></span><label class="chk"><input type="checkbox" id="f-comm"> רק פריטים עם פרשנות מומחים</label><span id="built"></span></div>
 
   <div id="grid" class="grid"></div>
   <div id="docs" style="display:none"></div>
@@ -146,6 +165,7 @@ footer p{margin:4px 0}
       <div id="m-desc-he" class="desc"></div>
       <div id="m-desc-en" class="desc en" style="display:none"></div>
       <div class="links" id="m-links"></div>
+      <section class="experts" id="m-experts"></section>
     </div>
   </div>
 </div>
@@ -175,7 +195,8 @@ footer p{margin:4px 0}
 
   // tabs
   const counts = {video:0,image:0,audio:0}; ITEMS.forEach(i=>counts[i.kind]++);
-  $("tabs").innerHTML = ["video","image","audio","docs"].map(k=>`<button class="tab ${k===kind?'active':''}" data-k="${k}">${KIND_HE[k]}<span class="n">${k==="docs"?DOCS.length:counts[k]}</span></button>`).join("");
+  KIND_HE.experts="פרשנות מומחים";
+  $("tabs").innerHTML = ["video","image","audio","docs","experts"].map(k=>`<button class="tab ${k===kind?'active':''}" data-k="${k}">${KIND_HE[k]}<span class="n">${k==="docs"?DOCS.length:k==="experts"?(DATA.commentary||[]).length:counts[k]}</span></button>`).join("");
   $("tabs").addEventListener("click", e=>{const b=e.target.closest(".tab"); if(!b) return; kind=b.dataset.k; document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t===b)); render();});
   $("stats").innerHTML = `<span><b>${counts.video}</b> סרטונים</span><span><b>${counts.image}</b> תמונות</span><span><b>${counts.audio}</b> הקלטות</span><span><b>${DOCS.length}</b> מסמכים</span>`;
   $("built").textContent = "עודכן: " + DATA.built.split("-").reverse().join(".");
@@ -187,10 +208,12 @@ footer p{margin:4px 0}
   agencies.forEach(a=>$("f-agency").insertAdjacentHTML("beforeend",`<option value="${esc(a)}">${esc(ag(a))}</option>`));
   const years=[...new Set(ITEMS.map(i=>i.year).filter(Boolean))].sort((a,b)=>b-a);
   years.forEach(y=>$("f-year").insertAdjacentHTML("beforeend",`<option value="${y}">${y}</option>`));
-  ["q","f-release","f-agency","f-year","f-sort"].forEach(id=>$(id).addEventListener("input",render));
+  ["q","f-release","f-agency","f-year","f-sort","f-comm"].forEach(id=>$(id).addEventListener("input",render));
+  const COMM = DATA.commentary || [];
 
   function matches(i){
     const q=$("q").value.trim().toLowerCase();
+    if($("f-comm").checked && !i.has_comm) return false;
     if($("f-release").value!=="" && String(i.release)!==$("f-release").value) return false;
     if($("f-agency").value && i.agency!==$("f-agency").value) return false;
     if($("f-year").value && String(i.year)!==$("f-year").value) return false;
@@ -207,10 +230,11 @@ footer p{margin:4px 0}
   }
   function firstPara(t){ const p=t.split(/\n/).filter(x=>x.trim()); return p[0]||""; }
   function render(){
-    const isDocs = kind==="docs";
-    $("grid").style.display=isDocs?"none":"grid"; $("docs").style.display=isDocs?"block":"none";
-    $("f-year").disabled=isDocs; $("f-sort").disabled=isDocs;
+    const isDocs = kind==="docs", isExp = kind==="experts";
+    $("grid").style.display=(isDocs||isExp)?"none":"grid"; $("docs").style.display=(isDocs||isExp)?"block":"none";
+    $("f-year").disabled=isDocs||isExp; $("f-sort").disabled=isDocs||isExp; $("f-comm").disabled=isDocs||isExp;
     if(isDocs){ renderDocs(); return; }
+    if(isExp){ renderExpertsPage(); return; }
     view = sortView(ITEMS.filter(i=>i.kind===kind && matches(i)));
     $("count").textContent = `${view.length} מתוך ${counts[kind]} ${KIND_HE[kind]}`;
     if(!view.length){ $("grid").innerHTML=`<div class="empty">לא נמצא כלום. נסו לנקות את הסינון.</div>`; return; }
@@ -220,10 +244,28 @@ footer p{margin:4px 0}
       else if(i.kind==="image"){ th=`<div class="thumb"><img loading="lazy" src="${esc(i.thumb||i.img)}" alt="${esc(i.alt_he||i.alt||"")}" onerror="this.style.display='none'"><span class="badge">תמונה</span>${relBadge(i)}</div>`; }
       else { th=`<div class="thumb"><img loading="lazy" src="${esc(i.thumb)}" alt="" onerror="this.style.display='none'"><div class="play"><span></span></div><span class="badge">וידאו</span>${relBadge(i)}</div>`; }
       const sub=[ag(i.agency), loc(i.location), i.year].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("");
+      if(i.has_comm) th=th.replace(/<\/div>$/, `<span class="cbadge">פרשנות</span></div>`);
       return `<article class="card" data-idx="${idx}">${th}<div class="body"><h3>${esc(i.title_he)}</h3><div class="sub">${sub}</div><p>${esc(firstPara(i.desc_he))}</p></div></article>`;
     }).join("");
   }
   function relBadge(i){ return i.release?`<span class="rel">סבב ${i.release}</span>`:`<span class="rel" style="background:rgba(79,209,197,.9);color:#04231f">AARO</span>`; }
+  function renderExpertsPage(){
+    const q=$("q").value.trim().toLowerCase();
+    const relF=$("f-release").value;
+    const byKey={}; ITEMS.forEach(i=>byKey[i.k]=i);
+    let rows=COMM.map((c,ci)=>({c,ci})).filter(({c})=>{
+      if(q && ![c.person,c.role,c.role_he,c.outlet,c.quote_en,c.quote_he,c.gist_he].join(" ").toLowerCase().includes(q)) return false;
+      if(relF!==""){ const its=c.targets.filter(t=>byKey[t]).map(t=>byKey[t]); if(!c.targets.includes("release:"+relF) && !its.some(i=>String(i.release)===relF)) return false; }
+      return true;
+    });
+    $("count").textContent=`${rows.length} ציטוטים`;
+    const groups=[["על המאגר כולו",r=>r.c.targets.includes("all")],["על סבבי שחרור",r=>r.c.targets.some(t=>t.startsWith("release:"))],["על קבצים ספציפיים",r=>r.c.targets.some(t=>byKey[t])]];
+    let h=`<section class="experts" style="border:0;padding-top:4px"><h3>מה אומרים המומחים</h3><p class="lead">כל הציטוטים שנאספו: עיתונאים, חוקרים סקפטיים, מדענים ובכירים לשעבר. מתורגם לעברית, מקושר למקור. לחיצה על שם קובץ פותחת אותו.</p>`;
+    groups.forEach(([name,fn])=>{ const g=rows.filter(fn); if(!g.length) return; h+=`<h3 style="font-size:16px;margin-top:22px">${name} <span class="n" style="color:var(--muted);font-weight:400;font-size:13px">(${g.length})</span></h3>`; h+=g.map(({c})=>{ const its=c.targets.filter(t=>byKey[t]).map(t=>byKey[t]); const rel=c.targets.filter(t=>t.startsWith("release:")).map(t=>REL_HE[+t.split(":")[1]]||t); const tag=(its.length||rel.length)?`<div class="scope" style="margin:6px 0 0">${rel.map(esc).join(" · ")}${its.slice(0,6).map(i=>`<a href="#${i.k}" data-open="${i.k}" style="margin-inline-end:10px">${esc(i.title_he.split(",")[0])}</a>`).join("")}${its.length>6?` ועוד ${its.length-6}`:""}</div>`:""; return quoteHTML(c).replace(/<\/div>$/, tag+"</div>"); }).join(""); });
+    h+=`</section>`; $("docs").innerHTML=h;
+    $("docs").querySelectorAll('button[data-t="orig"]').forEach(b=>b.onclick=()=>b.closest(".quote").classList.toggle("show-en"));
+    $("docs").querySelectorAll('a[data-open]').forEach(a=>a.onclick=e=>{e.preventDefault(); const it=byKey[a.dataset.open]; kind=it.kind; document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.k===kind)); render(); const idx=view.findIndex(i=>i.k===it.k); if(idx>=0) openModal(idx); });
+  }
   function renderDocs(){
     const q=$("q").value.trim().toLowerCase();
     const rows=DOCS.filter(d=>{ if($("f-release").value!=="" && String(d.release)!==$("f-release").value) return false; if($("f-agency").value && d.agency!==$("f-agency").value) return false; if(q && ![d.title,d.agency,d.incident,d.location].join(" ").toLowerCase().includes(q)) return false; return true; });
@@ -245,9 +287,29 @@ footer p{margin:4px 0}
     $("m-desc-he").textContent=i.desc_he; $("m-desc-en").textContent=i.desc;
     const links=[]; if(i.src) links.push(`<a href="${esc(i.src)}" target="_blank" rel="noopener">המקור הרשמי ↗</a>`); if(i.mp4) links.push(`<a href="${esc(i.mp4)}" target="_blank" rel="noopener">קובץ ${i.kind==="audio"?"האודיו":"הווידאו"} (MP4) ↗</a>`); if(i.img) links.push(`<a href="${esc(i.img)}" target="_blank" rel="noopener">התמונה במלואה ↗</a>`); if(i.pdf_link) links.push(`<a href="${esc(i.pdf_link)}" target="_blank" rel="noopener">דוח המשימה הנלווה (PDF) ↗</a>`);
     $("m-links").innerHTML=links.join("");
+    renderExperts(i);
     setLang(lang);
     $("modal").classList.add("open"); document.body.style.overflow="hidden";
     history.replaceState(null,"","#"+i.k);
+  }
+  function fmtDate(d){ if(!d) return ""; const p=d.split("-"); return p.length===3?`${+p[2]}.${+p[1]}.${p[0]}`:d; }
+  function quoteHTML(c){
+    const who=[`<b>${esc(c.person)}</b>`, c.role_he||c.role?`<span>${esc(c.role_he||c.role)}</span>`:"", c.outlet?`<span class="outlet">${esc(c.outlet)}</span>`:"", c.date?`<span class="ltr">${esc(fmtDate(c.date))}</span>`:""].filter(Boolean).join("");
+    const he=c.quote_he||c.gist_he; const en=c.quote_en;
+    return `<div class="quote"><div class="who">${who}</div><blockquote>${esc(he||en)}</blockquote><div class="orig">${esc(en)}</div><div class="tools">${he?`<button data-t="orig">המקור באנגלית</button>`:""}<a href="${esc(c.url)}" target="_blank" rel="noopener">למקור ↗</a></div></div>`;
+  }
+  function renderExperts(i){
+    const box=$("m-experts");
+    const direct=(i.comm||[]).map(ci=>COMM[ci]).filter(c=>c && c.targets.includes(i.k));
+    const rel=(i.comm||[]).map(ci=>COMM[ci]).filter(c=>c && !c.targets.includes(i.k) && c.targets.some(t=>t.startsWith("release:")));
+    const all=(i.comm||[]).map(ci=>COMM[ci]).filter(c=>c && c.targets.includes("all"));
+    if(!direct.length && !rel.length && !all.length){ box.innerHTML=""; return; }
+    let h=`<h3>מה אומרים המומחים</h3><p class="lead">פרשנות של עיתונאים, חוקרים ובכירים לשעבר, בתרגום לעברית. אלה לא קביעות רשמיות. כל ציטוט מקושר למקורו.</p>`;
+    if(direct.length) h+=`<div class="scope">על הקובץ הזה</div>`+direct.map(quoteHTML).join("");
+    if(rel.length) h+=`<div class="scope">על סבב השחרור הזה</div>`+rel.map(quoteHTML).join("");
+    if(all.length) h+=`<details><summary class="scope" style="cursor:pointer">על מאגר הקבצים כולו (${all.length})</summary>${all.map(quoteHTML).join("")}</details>`;
+    box.innerHTML=h;
+    box.querySelectorAll('button[data-t="orig"]').forEach(b=>b.onclick=()=>b.closest(".quote").classList.toggle("show-en"));
   }
   function closeModal(){ $("modal").classList.remove("open"); document.body.style.overflow=""; $("m-media").querySelectorAll("video,audio").forEach(v=>{v.pause();v.remove();}); history.replaceState(null,""," "); }
   function setLang(l){ lang=l; $("m-desc-he").style.display=(l==="he"||l==="both")?"block":"none"; $("m-desc-en").style.display=(l==="en"||l==="both")?"block":"none"; ["he","en","both"].forEach(x=>$("t-"+x).classList.toggle("on",x===l)); }
