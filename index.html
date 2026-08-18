@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ארכיון ה-UAP של הפנטגון | כל הסרטונים והתמונות, בעברית</title>
+<meta name="description" content="כל הסרטונים, התמונות וההקלטות שמשרד המלחמה האמריקאי, AARO ו-PURSUE שחררו על תופעות אנומליות בלתי מזוהות (UAP), עם ההסבר הרשמי מתורגם לעברית.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070b12; --panel:#0e1521; --panel2:#131c2b; --line:#1e2a3d; --text:#e6edf7; --muted:#8a9bb5;
+  --accent:#4fd1c5; --accent2:#f6c453; --danger:#ff6b6b; --radius:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Heebo,system-ui,-apple-system,Segoe UI,Arial,sans-serif;font-size:16px;line-height:1.55}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.ltr{direction:ltr;unicode-bidi:isolate;font-family:ui-monospace,Consolas,Menlo,monospace;font-size:.85em}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,rgba(7,11,18,.98),rgba(7,11,18,.92));backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .logo{width:40px;height:40px;border-radius:12px;background:radial-gradient(circle at 30% 30%,#7ff0e4,#1c6f68 60%,#0b2b2a);box-shadow:0 0 24px rgba(79,209,197,.35);position:relative}
+.brand .logo:after{content:"";position:absolute;inset:14px 6px;border-radius:50%;border:2px solid rgba(255,255,255,.7);transform:rotate(-12deg)}
+.brand h1{font-size:20px;margin:0;font-weight:900;letter-spacing:-.2px}
+.brand small{display:block;color:var(--muted);font-weight:400;font-size:12.5px}
+.stats{display:flex;gap:14px;color:var(--muted);font-size:13px;flex-wrap:wrap}
+.stats b{color:var(--text)}
+.tabs{display:flex;gap:6px;padding:0 0 12px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:8px 14px;border-radius:999px;cursor:pointer;font-size:14px;font-family:inherit}
+.tab.active{background:var(--accent);color:#04231f;border-color:var(--accent);font-weight:700}
+.tab .n{opacity:.7;font-size:12px;margin-inline-start:6px}
+.hero{padding:26px 0 8px}
+.hero p{max-width:820px;color:var(--muted);margin:6px 0 0}
+.controls{display:grid;grid-template-columns:2fr repeat(4,1fr);gap:10px;padding:14px 0 6px}
+.controls input,.controls select{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--text);padding:10px 12px;border-radius:10px;font-family:inherit;font-size:14px}
+.controls input:focus,.controls select:focus{outline:2px solid rgba(79,209,197,.5);border-color:var(--accent)}
+.meta-line{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;padding:6px 0 10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;padding-bottom:40px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:transform .15s,border-color .15s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-2px);border-color:#2f4262}
+.thumb{position:relative;aspect-ratio:16/9;background:#0a0f18 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="20" fill="none" stroke="%231e2a3d" stroke-width="2"/><circle cx="40" cy="40" r="2" fill="%231e2a3d"/></svg>') center/80px no-repeat;overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb .badge{position:absolute;top:8px;inset-inline-start:8px;background:rgba(0,0,0,.65);color:#fff;font-size:11.5px;padding:3px 8px;border-radius:999px;backdrop-filter:blur(4px)}
+.thumb .rel{position:absolute;bottom:8px;inset-inline-end:8px;background:rgba(246,196,83,.9);color:#3a2a00;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px}
+.thumb .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.9}
+.thumb .play span{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.thumb .play span:after{content:"";border-style:solid;border-width:8px 0 8px 14px;border-color:transparent transparent transparent #fff;margin-inline-start:-4px;transform:scaleX(-1)}
+.thumb.audio{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f2740,#0a1a2a)}
+.thumb.audio .wave{display:flex;gap:4px;align-items:center;height:60px}
+.thumb.audio .wave i{display:block;width:5px;background:var(--accent);border-radius:3px;opacity:.85}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.body h3{margin:0;font-size:15.5px;font-weight:700;line-height:1.35}
+.body .sub{color:var(--muted);font-size:12.5px;display:flex;gap:8px;flex-wrap:wrap}
+.body .sub span:before{content:"·";margin-inline-end:8px;opacity:.5}
+.body .sub span:first-child:before{content:""}
+.body p{margin:4px 0 0;color:#c9d4e5;font-size:13.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.empty{padding:60px 20px;text-align:center;color:var(--muted)}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;z-index:50;overflow:auto;padding:24px 12px}
+.modal.open{display:block}
+.dialog{max-width:1040px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.dialog .media{background:#000;position:relative}
+.dialog video,.dialog img.full{width:100%;max-height:70vh;display:block;object-fit:contain;background:#000}
+.dialog audio{width:100%;padding:24px 20px;background:#0a1220}
+.dialog .content{padding:18px 22px 24px}
+.dialog h2{margin:0 0 4px;font-size:21px;line-height:1.3}
+.dialog .en-title{color:var(--muted);font-size:13px;direction:ltr;text-align:left;unicode-bidi:isolate}
+.kv{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0;color:var(--muted);font-size:13.5px}
+.kv b{color:var(--text);font-weight:500}
+.desc{white-space:pre-line;font-size:16px;line-height:1.75;color:#dfe7f3;margin-top:8px}
+.desc.en{direction:ltr;text-align:left;color:#b7c3d6;font-size:14.5px;border-inline-start:3px solid var(--line);padding-inline-start:12px}
+.toggle{display:inline-flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-top:14px}
+.toggle button{background:transparent;border:0;color:var(--muted);padding:6px 14px;cursor:pointer;font-family:inherit;font-size:13px}
+.toggle button.on{background:var(--panel2);color:var(--text);font-weight:700}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.links a{border:1px solid var(--line);padding:7px 12px;border-radius:10px;font-size:13.5px;background:var(--panel2)}
+.close{position:absolute;top:10px;inset-inline-start:10px;z-index:2;background:rgba(0,0,0,.6);color:#fff;border:1px solid rgba(255,255,255,.3);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:20px;line-height:1}
+.nav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.3);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:20px}
+.nav.prev{inset-inline-end:10px}.nav.next{inset-inline-start:10px}
+.disclaimer{opacity:.75;font-size:13.5px}
+/* docs */
+table.docs{width:100%;border-collapse:collapse;font-size:14px;margin-bottom:40px}
+table.docs th,table.docs td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+table.docs th{color:var(--muted);font-weight:500;position:sticky;top:112px;background:var(--bg)}
+table.docs td.t{direction:ltr;text-align:left}
+footer{border-top:1px solid var(--line);color:var(--muted);font-size:13px;padding:24px 0 40px}
+footer p{margin:4px 0}
+@media (max-width:900px){.controls{grid-template-columns:1fr 1fr}.controls input{grid-column:1/-1}.stats{display:none}}
+@media (max-width:560px){.grid{grid-template-columns:1fr}.brand h1{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <h1>ארכיון ה-UAP של הפנטגון</h1>
+          <small>כל מה שמשרד המלחמה האמריקאי, AARO ו-PURSUE שחררו. ההסבר הרשמי מתורגם לעברית.</small>
+        </div>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="tabs" id="tabs"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p id="intro">האתר מרכז את כל קובצי הווידאו, התמונות וההקלטות שהממשל האמריקאי שחרר רשמית סביב תופעות אנומליות בלתי מזוהות (UAP): סבבי השחרור של יוזמת PURSUE (מאי-אוגוסט 2026) והמאגר של AARO ב-DVIDS. לכל קובץ מוצג התיאור הרשמי שפורסם לצדו, מתורגם לעברית, עם אפשרות להציג את המקור באנגלית. הקבצים עצמם מוזרמים ישירות מהשרתים הרשמיים.</p>
+  </section>
+
+  <div class="controls" id="controls">
+    <input type="search" id="q" placeholder="חיפוש: מיקום, שנה, מזהה, מילה בתיאור...">
+    <select id="f-release"><option value="">כל סבבי השחרור</option></select>
+    <select id="f-agency"><option value="">כל הסוכנויות</option></select>
+    <select id="f-year"><option value="">כל השנים (אירוע)</option></select>
+    <select id="f-sort">
+      <option value="rel">מיון: סבב שחרור (חדש קודם)</option>
+      <option value="year-desc">מיון: שנת אירוע, מהחדש לישן</option>
+      <option value="year-asc">מיון: שנת אירוע, מהישן לחדש</option>
+      <option value="title">מיון: מזהה קובץ</option>
+    </select>
+  </div>
+  <div class="meta-line"><span id="count"></span><span id="built"></span></div>
+
+  <div id="grid" class="grid"></div>
+  <div id="docs" style="display:none"></div>
+</main>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="dialog" role="dialog" aria-modal="true">
+    <div class="media" id="m-media">
+      <button class="close" id="m-close" aria-label="סגור">×</button>
+      <button class="nav prev" id="m-prev" aria-label="הקודם">›</button>
+      <button class="nav next" id="m-next" aria-label="הבא">‹</button>
+    </div>
+    <div class="content">
+      <h2 id="m-title"></h2>
+      <div class="en-title" id="m-title-en"></div>
+      <div class="kv" id="m-kv"></div>
+      <div class="toggle"><button id="t-he" class="on">עברית</button><button id="t-en">English</button><button id="t-both">שניהם</button></div>
+      <div id="m-desc-he" class="desc"></div>
+      <div id="m-desc-en" class="desc en" style="display:none"></div>
+      <div class="links" id="m-links"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>מקורות: <a href="https://www.war.gov/UFO/" target="_blank" rel="noopener">war.gov/UFO (PURSUE)</a> · <a href="https://www.dvidshub.net/unit/AARO" target="_blank" rel="noopener">AARO ב-DVIDS</a> · <a href="https://www.aaro.mil/" target="_blank" rel="noopener">aaro.mil</a>. הקבצים והתיאורים הם חומר של ממשלת ארה"ב ומוצגים כפי שפורסמו. התרגום לעברית אינו רשמי.</p>
+    <p>התיאורים הרשמיים מובאים למטרות מידע בלבד ואינם מהווים קביעה לגבי טבעם של האירועים המתועדים.</p>
+  </div>
+</footer>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  const DATA = window.UAP_DATA; const ITEMS = DATA.items; const DOCS = DATA.docs;
+  const KIND_HE = {video:"סרטונים", image:"תמונות", audio:"הקלטות", docs:"מסמכים"};
+  const KIND_ONE = {video:"וידאו", image:"תמונה", audio:"אודיו"};
+  const AGENCY_HE = {"Department of War":"משרד המלחמה","FBI":"FBI","NASA":"NASA","CIA":"CIA","Department of Energy":"משרד האנרגיה","Department of State":"מחלקת המדינה","Office of the Director of National Intelligence":"ODNI","Executive Office of the President":"הבית הלבן","Intelligence Community Agency":"קהיליית המודיעין","U.S. Government":"ממשלת ארה\"ב"};
+  const REL_HE = {0:"AARO (לפני PURSUE)",1:"סבב 1, 8.5.2026",2:"סבב 2, 22.5.2026",3:"סבב 3, 12.6.2026",4:"סבב 4, 10.7.2026",5:"סבב 5, 7.8.2026"};
+  const LOC_HE = {"Middle East":"המזרח התיכון","Arabian Gulf":"המפרץ הערבי","Persian Gulf":"המפרץ הפרסי","Iraq":"עיראק","Syria":"סוריה","Greece":"יוון","Gulf of Oman":"מפרץ עומאן","United Arab Emirates":"איחוד האמירויות","Djibouti":"ג'יבוטי","East China Sea":"ים סין המזרחי","South China Sea":"ים סין הדרומי","Yellow Sea":"הים הצהוב","Japan":"יפן","Indo-PACOM":"פיקוד הודו-פסיפיק","North America":"צפון אמריקה","Southern United States":"דרום ארה\"ב","Eastern United States":"מזרח ארה\"ב","Western United States":"מערב ארה\"ב","Westen United States":"מערב ארה\"ב","Northeastern United States":"צפון-מזרח ארה\"ב","Southeastern United States":"דרום-מזרח ארה\"ב","Midwestern United States":"המערב התיכון של ארה\"ב","Atlantic Ocean":"האוקיינוס האטלנטי","Pacific Ocean":"האוקיינוס השקט","Gulf of America":"מפרץ מקסיקו","CENTCOM":"פיקוד המרכז (CENTCOM)","EUCOM":"הפיקוד האירופי (EUCOM)","AFRICOM":"פיקוד אפריקה (AFRICOM)","NORTHCOM":"פיקוד הצפון (NORTHCOM)","INDOPACOM":"פיקוד הודו-פסיפיק (INDOPACOM)","Kazakhstan":"קזחסטן","Afghanistan":"אפגניסטן","Colorado Springs, Colorado":"קולורדו ספרינגס, קולורדו","Moon":"הירח","Low Earth Orbit":"מסלול נמוך סביב כדור הארץ","Low-Earth Orbit":"מסלול נמוך סביב כדור הארץ","Cislunar Space":"החלל בין כדור הארץ לירח","Texas":"טקסס","Houston, Texas":"יוסטון, טקסס","North Atlantic Ocean":"צפון האוקיינוס האטלנטי","N/A":""};
+  const loc = s => LOC_HE[s] !== undefined ? LOC_HE[s] : s;
+  const ag = s => AGENCY_HE[s] || s;
+  const esc = s => String(s||"").replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  let kind = "video", view = [], modalIdx = -1, lang = "he";
+  const $ = id => document.getElementById(id);
+
+  // tabs
+  const counts = {video:0,image:0,audio:0}; ITEMS.forEach(i=>counts[i.kind]++);
+  $("tabs").innerHTML = ["video","image","audio","docs"].map(k=>`<button class="tab ${k===kind?'active':''}" data-k="${k}">${KIND_HE[k]}<span class="n">${k==="docs"?DOCS.length:counts[k]}</span></button>`).join("");
+  $("tabs").addEventListener("click", e=>{const b=e.target.closest(".tab"); if(!b) return; kind=b.dataset.k; document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t===b)); render();});
+  $("stats").innerHTML = `<span><b>${counts.video}</b> סרטונים</span><span><b>${counts.image}</b> תמונות</span><span><b>${counts.audio}</b> הקלטות</span><span><b>${DOCS.length}</b> מסמכים</span>`;
+  $("built").textContent = "עודכן: " + DATA.built.split("-").reverse().join(".");
+
+  // filters
+  const rels=[...new Set(ITEMS.map(i=>i.release))].sort((a,b)=>b-a);
+  rels.forEach(r=>$("f-release").insertAdjacentHTML("beforeend",`<option value="${r}">${REL_HE[r]||("סבב "+r)}</option>`));
+  const agencies=[...new Set(ITEMS.map(i=>i.agency))].sort();
+  agencies.forEach(a=>$("f-agency").insertAdjacentHTML("beforeend",`<option value="${esc(a)}">${esc(ag(a))}</option>`));
+  const years=[...new Set(ITEMS.map(i=>i.year).filter(Boolean))].sort((a,b)=>b-a);
+  years.forEach(y=>$("f-year").insertAdjacentHTML("beforeend",`<option value="${y}">${y}</option>`));
+  ["q","f-release","f-agency","f-year","f-sort"].forEach(id=>$(id).addEventListener("input",render));
+
+  function matches(i){
+    const q=$("q").value.trim().toLowerCase();
+    if($("f-release").value!=="" && String(i.release)!==$("f-release").value) return false;
+    if($("f-agency").value && i.agency!==$("f-agency").value) return false;
+    if($("f-year").value && String(i.year)!==$("f-year").value) return false;
+    if(q){ const hay=[i.title,i.title_he,i.desc,i.desc_he,i.location,loc(i.location),i.incident,i.id,i.agency,ag(i.agency)].join(" ").toLowerCase(); if(!hay.includes(q)) return false; }
+    return true;
+  }
+  function sortView(arr){
+    const s=$("f-sort").value;
+    if(s==="year-desc") arr.sort((a,b)=>(b.year||0)-(a.year||0));
+    else if(s==="year-asc") arr.sort((a,b)=>(a.year||9999)-(b.year||9999));
+    else if(s==="title") arr.sort((a,b)=>a.title.localeCompare(b.title));
+    else arr.sort((a,b)=>b.release-a.release || a.title.localeCompare(b.title));
+    return arr;
+  }
+  function firstPara(t){ const p=t.split(/\n/).filter(x=>x.trim()); return p[0]||""; }
+  function render(){
+    const isDocs = kind==="docs";
+    $("grid").style.display=isDocs?"none":"grid"; $("docs").style.display=isDocs?"block":"none";
+    $("f-year").disabled=isDocs; $("f-sort").disabled=isDocs;
+    if(isDocs){ renderDocs(); return; }
+    view = sortView(ITEMS.filter(i=>i.kind===kind && matches(i)));
+    $("count").textContent = `${view.length} מתוך ${counts[kind]} ${KIND_HE[kind]}`;
+    if(!view.length){ $("grid").innerHTML=`<div class="empty">לא נמצא כלום. נסו לנקות את הסינון.</div>`; return; }
+    $("grid").innerHTML = view.map((i,idx)=>{
+      let th;
+      if(i.kind==="audio"){ const bars=Array.from({length:22},(_,k)=>`<i style="height:${8+Math.abs(Math.sin(k*1.7+i.id.length))*44}px"></i>`).join(""); th=`<div class="thumb audio"><div class="wave">${bars}</div><span class="badge">אודיו</span>${relBadge(i)}</div>`; }
+      else if(i.kind==="image"){ th=`<div class="thumb"><img loading="lazy" src="${esc(i.thumb||i.img)}" alt="${esc(i.alt_he||i.alt||"")}" onerror="this.style.display='none'"><span class="badge">תמונה</span>${relBadge(i)}</div>`; }
+      else { th=`<div class="thumb"><img loading="lazy" src="${esc(i.thumb)}" alt="" onerror="this.style.display='none'"><div class="play"><span></span></div><span class="badge">וידאו</span>${relBadge(i)}</div>`; }
+      const sub=[ag(i.agency), loc(i.location), i.year].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join("");
+      return `<article class="card" data-idx="${idx}">${th}<div class="body"><h3>${esc(i.title_he)}</h3><div class="sub">${sub}</div><p>${esc(firstPara(i.desc_he))}</p></div></article>`;
+    }).join("");
+  }
+  function relBadge(i){ return i.release?`<span class="rel">סבב ${i.release}</span>`:`<span class="rel" style="background:rgba(79,209,197,.9);color:#04231f">AARO</span>`; }
+  function renderDocs(){
+    const q=$("q").value.trim().toLowerCase();
+    const rows=DOCS.filter(d=>{ if($("f-release").value!=="" && String(d.release)!==$("f-release").value) return false; if($("f-agency").value && d.agency!==$("f-agency").value) return false; if(q && ![d.title,d.agency,d.incident,d.location].join(" ").toLowerCase().includes(q)) return false; return true; });
+    $("count").textContent = `${rows.length} מתוך ${DOCS.length} מסמכים (PDF, באנגלית)`;
+    $("docs").innerHTML = `<table class="docs"><thead><tr><th>מסמך</th><th>סוכנות</th><th>סבב</th><th>תאריך אירוע</th><th>מיקום</th></tr></thead><tbody>${rows.map(d=>`<tr><td class="t"><a href="${esc(d.link)}" target="_blank" rel="noopener">${esc(d.title)}</a></td><td>${esc(ag(d.agency))}</td><td>${d.release}</td><td class="ltr">${esc(d.incident)}</td><td>${esc(loc(d.location))}</td></tr>`).join("")}</tbody></table>`;
+  }
+
+  // modal
+  $("grid").addEventListener("click", e=>{const c=e.target.closest(".card"); if(c) openModal(+c.dataset.idx);});
+  function openModal(idx){
+    modalIdx=idx; const i=view[idx]; const M=$("m-media");
+    M.querySelectorAll("video,audio,img,.imgwrap").forEach(n=>n.remove());
+    if(i.kind==="video"){ M.insertAdjacentHTML("beforeend",`<video controls playsinline preload="metadata" poster="${esc(i.thumb)}"><source src="${esc(i.mp4)}" type="video/mp4">הדפדפן לא תומך בניגון. <a href="${esc(i.mp4)}">להורדה</a></video>`); }
+    else if(i.kind==="audio"){ M.insertAdjacentHTML("beforeend",`<audio controls preload="metadata" src="${esc(i.mp4)}"></audio>`); }
+    else { M.insertAdjacentHTML("beforeend",`<img class="full" src="${esc(i.img)}" alt="${esc(i.alt_he||"")}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'imgwrap',style:'padding:40px;text-align:center;color:#8a9bb5',innerHTML:'התמונה לא נטענה מהשרת של war.gov. <a href=&quot;${esc(i.img)}&quot; target=&quot;_blank&quot;>לפתיחה במקור</a>'}))">`); }
+    $("m-title").textContent=i.title_he; $("m-title-en").textContent=i.title!==i.title_he?i.title:"";
+    const kv=[["סוג",KIND_ONE[i.kind]],["סוכנות",ag(i.agency)],["סבב שחרור",REL_HE[i.release]],["תאריך האירוע",i.incident&&i.incident!=="N/A"?i.incident:""],["מיקום",loc(i.location)],["מזהה DVIDS",i.id],["מסמך נלווה",i.pdf]].filter(x=>x[1]);
+    $("m-kv").innerHTML=kv.map(([k,v])=>`<div>${k}: <b class="${/^[\x00-\x7F]*$/.test(v)?'ltr':''}">${esc(v)}</b></div>`).join("");
+    $("m-desc-he").textContent=i.desc_he; $("m-desc-en").textContent=i.desc;
+    const links=[]; if(i.src) links.push(`<a href="${esc(i.src)}" target="_blank" rel="noopener">המקור הרשמי ↗</a>`); if(i.mp4) links.push(`<a href="${esc(i.mp4)}" target="_blank" rel="noopener">קובץ ${i.kind==="audio"?"האודיו":"הווידאו"} (MP4) ↗</a>`); if(i.img) links.push(`<a href="${esc(i.img)}" target="_blank" rel="noopener">התמונה במלואה ↗</a>`); if(i.pdf_link) links.push(`<a href="${esc(i.pdf_link)}" target="_blank" rel="noopener">דוח המשימה הנלווה (PDF) ↗</a>`);
+    $("m-links").innerHTML=links.join("");
+    setLang(lang);
+    $("modal").classList.add("open"); document.body.style.overflow="hidden";
+    history.replaceState(null,"","#"+i.k);
+  }
+  function closeModal(){ $("modal").classList.remove("open"); document.body.style.overflow=""; $("m-media").querySelectorAll("video,audio").forEach(v=>{v.pause();v.remove();}); history.replaceState(null,""," "); }
+  function setLang(l){ lang=l; $("m-desc-he").style.display=(l==="he"||l==="both")?"block":"none"; $("m-desc-en").style.display=(l==="en"||l==="both")?"block":"none"; ["he","en","both"].forEach(x=>$("t-"+x).classList.toggle("on",x===l)); }
+  $("t-he").onclick=()=>setLang("he"); $("t-en").onclick=()=>setLang("en"); $("t-both").onclick=()=>setLang("both");
+  $("m-close").onclick=closeModal; $("modal").addEventListener("click",e=>{if(e.target===$("modal")) closeModal();});
+  $("m-prev").onclick=()=>{ if(modalIdx>0) openModal(modalIdx-1); };
+  $("m-next").onclick=()=>{ if(modalIdx<view.length-1) openModal(modalIdx+1); };
+  document.addEventListener("keydown",e=>{ if(!$("modal").classList.contains("open")) return; if(e.key==="Escape") closeModal(); if(e.key==="ArrowRight") $("m-prev").click(); if(e.key==="ArrowLeft") $("m-next").click(); });
+
+  render();
+  // deep link
+  if(location.hash){ const k=location.hash.slice(1); const it=ITEMS.find(i=>i.k===k); if(it){ kind=it.kind; document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.k===kind)); render(); const idx=view.findIndex(i=>i.k===k); if(idx>=0) openModal(idx); } }
+})();
+</script>
+</body>
+</html>
