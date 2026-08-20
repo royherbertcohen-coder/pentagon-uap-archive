@@ -5,11 +5,27 @@ on:
   workflow_dispatch:
 permissions:
   contents: write
+  pages: write
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Enforce HTTPS once cert is ready
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f tg/https_enforced.flag ]; then echo "https already enforced"; exit 0; fi
+          code=$(curl -s -o /dev/null -w '%{http_code}' -X PUT \
+            -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/royherbertcohen-coder/pentagon-uap-archive/pages \
+            -d '{"https_enforced":true}')
+          echo "enforce https -> $code"
+          if [ "$code" = "204" ]; then
+            date -u +%FT%TZ > tg/https_enforced.flag
+            git config user.name ufo-bot; git config user.email bot@ufo.org.il
+            git add tg/https_enforced.flag && git commit -m "https enforced" && git push
+          fi
       - name: Check and notify once
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
