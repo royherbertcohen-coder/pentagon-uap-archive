@@ -1,0 +1,26 @@
+name: UFO.IL uptime watch
+on:
+  schedule:
+    - cron: '20 * * * *'   # hourly
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check and notify once
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+        run: |
+          if [ -f tg/site_live.flag ]; then echo "already notified"; exit 0; fi
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 https://ufo.org.il/ || true)
+          echo "https://ufo.org.il -> $code"
+          if [ "$code" = "200" ] || [ "$code" = "301" ]; then
+            curl -s "https://api.telegram.org/bot$TG_BOT_TOKEN/sendMessage" \
+              -d chat_id=457902974 --data-urlencode text="עיקל, האתר באוויר: https://ufo.org.il עובד. אדם." >/dev/null
+            date -u +%FT%TZ > tg/site_live.flag
+            git config user.name ufo-bot; git config user.email bot@ufo.org.il
+            git add tg/site_live.flag && git commit -m "site live" && git push
+          fi
